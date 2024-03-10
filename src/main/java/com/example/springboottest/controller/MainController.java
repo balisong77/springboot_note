@@ -23,6 +23,7 @@ public class MainController {
      * 测试动态代理, 代理Cat的mew方法, 在方法前后打印日志
      * 注意：被代理的Cat类的mew方法，必须来源于一个接口，否则获取到动态代理对象之后，其类型为Object
      * 需要通过类型强转，来调用代理后的mew方法，所以必须有一个接口让其能强转
+     * 动态代理会为被代理的对象的每一个方法都添加代理逻辑
      * @return
      */
     @RequestMapping("/mew")
@@ -30,12 +31,13 @@ public class MainController {
     public String mew() {
         Cat cat = new Cat();
         Object catProxy = Proxy.newProxyInstance(cat.getClass().getClassLoader(), cat.getClass().getInterfaces(), (proxy, method, args) -> {
-            System.out.println("before mew");
+            System.out.println("before dynamic proxy");
             Object ret = method.invoke(cat, args);
-            System.out.println("after mew");
+            System.out.println("after dynamic proxy");
             return ret;
         });
         ((Animal) catProxy).mew();
+        ((Animal) catProxy).walk();
         return "mew";
     }
 }
