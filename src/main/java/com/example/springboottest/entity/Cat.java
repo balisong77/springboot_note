@@ -8,4 +8,8 @@ public class Cat implements Animal{
     public void walk() {
         System.out.println("cat walk");
     }
+
+    public void eat() {
+        System.out.println("cat eat");
+    }
 }
