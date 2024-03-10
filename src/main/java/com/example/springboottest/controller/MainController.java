@@ -2,8 +2,7 @@ package com.example.springboottest.controller;
 
 import com.example.springboottest.entity.Animal;
 import com.example.springboottest.entity.Cat;
-import org.aopalliance.aop.Advice;
-import org.springframework.aop.framework.ProxyFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cglib.proxy.Enhancer;
 import org.springframework.cglib.proxy.MethodInterceptor;
 import org.springframework.cglib.proxy.MethodProxy;
@@ -17,6 +16,9 @@ import java.lang.reflect.Proxy;
 @RequestMapping("/api")
 @Controller
 public class MainController {
+
+    @Value("${name}")
+    private String name;
 
     @RequestMapping("/hello")
     @ResponseBody
@@ -77,4 +79,9 @@ public class MainController {
         return "eat";
     }
 
+    @RequestMapping("/getValue")
+    @ResponseBody
+    public String getValue() {
+        return this.name;
+    }
 }

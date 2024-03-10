@@ -1,2 +1,4 @@
 server:
   port: 8080
+# used to test @Value
+name: Spring Boot
