@@ -20,10 +20,11 @@ public class MainController {
 
 
     /**
+     * JDK dynamic proxy test.
      * 测试动态代理, 代理Cat的mew方法, 在方法前后打印日志
      * 注意：被代理的Cat类的mew方法，必须来源于一个接口，否则获取到动态代理对象之后，其类型为Object
      * 需要通过类型强转，来调用代理后的mew方法，所以必须有一个接口让其能强转
-     * @return
+     * @return String of mew.
      */
     @RequestMapping("/mew")
     @ResponseBody
